@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EFExemplo.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFExemplo.Data
 {
@@ -6,6 +7,12 @@ namespace EFExemplo.Data
     {
         public EFExemploContext(DbContextOptions<EFExemploContext> options): base(options){ }
 
-        
+        public DbSet<Cliente> Clientes { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Cliente>().ToTable("Cliente");
+        }
+        public DbSet<EFExemplo.Models.produto> produto { get; set; } = default!;
     }
 }
